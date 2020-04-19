@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 
 import java.io.FileInputStream;
@@ -39,19 +40,19 @@ public class Base {
     @DataProvider
     public Object[][] getData() {
         //Row stands for how many different data types test should run
-        Object[][] data = new Object[1][2];
+        Object[][] data = new Object[2][2];
         data[0][0] = "abc@gmail.com"; //email
         data[0][1] = "1234567"; //password
 //        data[0][2] = "Restricted User";
 
-//        data[1][0] = "restrocteduser@qw.com";
-//        data[1][1] = "456789";
+        data[1][0] = "restrocteduser@qw.com";
+        data[1][1] = "456789";
 //        data[1][2] = "Non restricted User";
 
         return data;
     }
 
-    @AfterSuite
+    @AfterTest
     public void browserClose() {
         driver.quit();
     }
