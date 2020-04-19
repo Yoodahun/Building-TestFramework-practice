@@ -3,10 +3,7 @@ package homepage;
 import base.Base;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObject.LandingPage;
 import pageObject.LoginPage;
 
@@ -17,11 +14,14 @@ public class HomepageTest extends Base {
 
     WebDriver driver;
 
-    @Test(dataProvider = "getData")
-    public void basePageNavigation(String username, String password) throws IOException {
+    @BeforeTest
+    public void initialize() throws IOException {
         driver = super.initializeDriver();
-        driver.get("http://qaclickacademy.com");
+        driver.get(prop.getProperty("url"));
+    }
 
+    @Test(dataProvider = "getData")
+    public void basePageNavigation(String username, String password){
         LandingPage lp = new LandingPage(driver);
         lp.getLoginButton().click();
 
@@ -34,10 +34,7 @@ public class HomepageTest extends Base {
     }
 
     @Test
-    public void validateTitle() throws IOException {
-        driver = super.initializeDriver();
-        driver.get("http://qaclickacademy.com");
-
+    public void validateTitle(){
         LandingPage lp = new LandingPage(driver);
 
         //compare the text from the browser with actual text - Error
@@ -56,5 +53,6 @@ public class HomepageTest extends Base {
     public void browserClose() {
         driver.quit();
     }
+
 
 }

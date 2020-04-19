@@ -2,8 +2,6 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 
 import java.io.FileInputStream;
@@ -14,10 +12,11 @@ import java.util.concurrent.TimeUnit;
 public class Base {
 
     WebDriver driver;
+    public Properties prop;
 
     public WebDriver initializeDriver() throws IOException {
         //chrome
-        Properties prop = new Properties();
+        prop = new Properties();
         FileInputStream fis = new FileInputStream("src/main/resources/data.properties");
         prop.load(fis);
 
@@ -37,6 +36,8 @@ public class Base {
         return driver;
     }
 
+
+
     @DataProvider
     public Object[][] getData() {
         //Row stands for how many different data types test should run
@@ -52,8 +53,5 @@ public class Base {
         return data;
     }
 
-    @AfterTest
-    public void browserClose() {
-        driver.quit();
-    }
+
 }
