@@ -11,17 +11,24 @@ import java.io.IOException;
 
 
 public class HomepageTest extends Base {
+// TODO: adding logs
+// TODO: Generating html reports
+// TODO: Screenshots on failure
+// TODO: Jenkins integrations.
 
     WebDriver driver;
 
     @BeforeTest
     public void initialize() throws IOException {
         driver = super.initializeDriver();
-        driver.get(prop.getProperty("url"));
+        log.info("Driver is initialized");
+        log.info("Navigate to homepage");
     }
 
     @Test(dataProvider = "getData")
     public void basePageNavigation(String username, String password){
+
+        driver.get(prop.getProperty("url"));
         LandingPage lp = new LandingPage(driver);
         lp.getLoginButton().click();
 
@@ -29,12 +36,14 @@ public class HomepageTest extends Base {
         loginP.getEmailInput().sendKeys(username);
         loginP.getPasswordInput().sendKeys(password);
         loginP.getLoginButton().click();
+        log.info("Successfully validated Text Message");
 
 //        driver.quit();
     }
 
     @Test
     public void validateTitle(){
+        driver.get(prop.getProperty("url"));
         LandingPage lp = new LandingPage(driver);
 
         //compare the text from the browser with actual text - Error
@@ -51,6 +60,7 @@ public class HomepageTest extends Base {
 
     @AfterTest
     public void browserClose() {
+        log.info("Homepage Test Complete");
         driver.quit();
     }
 
