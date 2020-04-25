@@ -1,6 +1,11 @@
 package homepage;
 
 import base.Base;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -16,7 +21,8 @@ public class HomepageTest extends Base {
 // TODO: Screenshots on failure
 // TODO: Jenkins integrations.
 
-    WebDriver driver;
+     public static Logger log = LogManager.getLogger(HomepageTest.class.getName());
+
 
     @BeforeTest
     public void initialize() throws IOException {
@@ -62,6 +68,7 @@ public class HomepageTest extends Base {
     public void browserClose() {
         log.info("Homepage Test Complete");
         driver.quit();
+        driver = null;
     }
 
 
