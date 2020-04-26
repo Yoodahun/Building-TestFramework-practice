@@ -35,8 +35,10 @@ public class Base {
         FileInputStream fis = new FileInputStream("src/main/resources/data.properties");
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser");
+        //mvn test -Dbrowser=chrome
 
+//        String browserName = prop.getProperty("browser");
+        String browserName = System.getProperty("browser");
         if(browserName.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "/Users/yoodahun/Documents/Github/Java/Selenium WebDriver with Java/chromedriver");
             driver = new ChromeDriver();
