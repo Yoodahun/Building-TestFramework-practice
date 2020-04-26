@@ -9,6 +9,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
@@ -41,7 +42,9 @@ public class Base {
         String browserName = System.getProperty("browser");
         if(browserName.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "/Users/yoodahun/Documents/Github/Java/Selenium WebDriver with Java/chromedriver");
-            driver = new ChromeDriver();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("headless","user-agent=mrbean");
+            driver = new ChromeDriver(chromeOptions);
 
         } else if (browserName.equals("firefox")) {//firefox
 
