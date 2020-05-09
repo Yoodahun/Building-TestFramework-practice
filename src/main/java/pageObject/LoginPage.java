@@ -18,6 +18,11 @@ public class LoginPage {
     @FindBy(xpath = "//*[@id=\"new_user\"]/div[4]/input")
     WebElement loginButton;
 
+
+
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/div/div/div[1]/div/div")
+    WebElement invalidErrorBox;
+
     public LoginPage(WebDriver driver) {
         this.webDriver = driver;
         PageFactory.initElements(driver,this);
@@ -33,5 +38,8 @@ public class LoginPage {
 
     public WebElement getLoginButton() {
         return loginButton;
+    }
+    public WebElement getInvalidErrorBox() {
+        return invalidErrorBox;
     }
 }

@@ -1,6 +1,9 @@
 package base;
 
 
+
+
+import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 
@@ -30,6 +33,7 @@ public class Base {
     public static WebDriver driver;
     public Properties prop;
 
+
     public WebDriver initializeDriver() throws IOException {
         //chrome
         prop = new Properties();
@@ -38,13 +42,14 @@ public class Base {
 
         //mvn test -Dbrowser=chrome
 
-//        String browserName = prop.getProperty("browser");
-        String browserName = System.getProperty("browser");
+        String browserName = prop.getProperty("browser");
+//        String browserName = System.getProperty("browser");
         if(browserName.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "/Users/yoodahun/Documents/Github/Java/Selenium WebDriver with Java/chromedriver");
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("headless","user-agent=mrbean");
             driver = new ChromeDriver(chromeOptions);
+//               driver = new ChromeDriver();
 
         } else if (browserName.equals("firefox")) {//firefox
 
@@ -74,9 +79,12 @@ public class Base {
     }
 
 
-    public void getScreenshot(ITestResult result) throws IOException {
-        File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(src, new File("./Screenshot/"+ result.getName()+".jpg"));
+    public void getScreenshot(Scenario scenario) throws IOException {
+
+        if(scenario.isFailed()) {
+            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(src, new File("./Screenshot/" + scenario.getName() + ".jpg"));
+        }
     }
 
 

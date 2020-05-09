@@ -3,8 +3,12 @@ package pageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class LandingPage {
 
@@ -18,6 +22,9 @@ public class LandingPage {
 
     @FindBy(xpath = "//*[@id=\"homepage\"]/header/div[2]/div/nav/ul/li[8]/a")
     WebElement contactMenu;
+
+    @FindBy(xpath = "//button[text()='NO THANKS']")
+    List<WebElement> popups;
 
     public LandingPage(WebDriver driver) {
         this.driver = driver;
@@ -34,5 +41,9 @@ public class LandingPage {
 
     public WebElement getContactMenu() {
         return contactMenu;
+    }
+
+    public List<WebElement> getPopup() {
+        return popups;
     }
 }

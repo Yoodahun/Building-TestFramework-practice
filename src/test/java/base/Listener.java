@@ -22,11 +22,11 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        try {
-            base.getScreenshot(result);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            base.getScreenshot();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

@@ -16,12 +16,8 @@ import java.io.IOException;
 
 
 public class HomepageTest extends Base {
-// TODO: adding logs
-// TODO: Generating html reports
-// TODO: Screenshots on failure
-// TODO: Jenkins integrations.
 
-     public static Logger log = LogManager.getLogger(HomepageTest.class.getName());
+    public static Logger log = LogManager.getLogger(HomepageTest.class.getName());
 
 
     @BeforeTest
